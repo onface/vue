@@ -7,6 +7,7 @@
         <a-typo type="ref"> ref </a-typo>
         <a-typo type="desc"> desc </a-typo>
         <a-typo type="tip"> tip </a-typo>
+        <a-typo type="disabled"> disabled </a-typo>
     </div>
 </template>
 <script>

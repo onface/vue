@@ -1,7 +1,6 @@
 # icon
 
 
-
 ````code
 {
     title: '',
@@ -12,3 +11,9 @@
     side: true
 }
 ````
+
+## 图标列表
+
+<div id="icon-data-demo"></div>
+
+<script src="./data.demo.js" ></script>

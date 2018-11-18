@@ -7,13 +7,18 @@ export default {
   name: 'a-icon',
   computed: {
     rootClass: function () {
-      let is_arrow_back_ios = false
+      let fixleftbug = false
+      var fixLeftBugList = [ 'arrow_back_ios']
+      var fixoverflow = false
+      var fixoverflowList = [ 'star_rate' ]
       // materialicons 有个bug arrow_back_ios 不居中
-      if (Array.isArray(this.$slots.default) && this.$slots.default[0] && this.$slots.default[0].text === 'arrow_back_ios') {
-        is_arrow_back_ios = true
+      if (Array.isArray(this.$slots.default) && this.$slots.default[0]) {
+        fixleftbug = fixLeftBugList.includes(this.$slots.default[0].text)
+        fixoverflow = fixoverflowList.includes(this.$slots.default[0].text)
       }
       return {
-        [`${this.prefixClassName}--arrow_back_ios`]: is_arrow_back_ios,
+        [`${this.prefixClassName}--fixleftbug`]: fixleftbug,
+        [`${this.prefixClassName}--fixoverflow`]: fixoverflow,
         [this.prefixClassName]: true
       }
     }
@@ -31,7 +36,7 @@ export default {
   font-family: 'onface vue Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(MaterialIcons.woff2) format('woff2');
+  src: url(MaterialIcons-Regular.woff2) format('woff2');
 }
 
 .a-icon {
@@ -59,11 +64,15 @@ export default {
   position: relative;
   top:-.1em;
 }
-.a-icon--arrow_back_ios {
+.a-icon--fixoverflow {
   width: 1em;
   overflow: hidden;
 }
-.a-icon--arrow_back_ios:before {
+.a-icon--fixleftbug {
+  width: 1em;
+  overflow: hidden;
+}
+.a-icon--fixleftbug:before {
   content: ' ';
   display: inline-block;
   width: .2em;

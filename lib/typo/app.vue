@@ -65,6 +65,10 @@ export default {
     color: #337ab7;
     cursor: pointer;
 }
+.@{p}-disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
 .@{p}-title {
     display: block;
 }
