@@ -1,6 +1,9 @@
 <template >
   <div>
-    <div v-for="item in categories" >
+    <form @submit.prevent="searchIcon">
+      <input type="text" v-model="search" /><button>Search</button>
+    </form>
+    <div v-for="item in filterCategories" >
       <h4>{{item.name}}</h4>
       <ul class="icons">
         <li v-for="icon in item.icons" v-clipboard="'<a-icon>' + icon.id + '</a-icon>'"  @success="copySuccess" >
@@ -21,16 +24,39 @@ import VueClipboards from 'vue-clipboards';
 import message from "face-message"
 import _ from "lodash"
 import Vue from "vue"
+import extend from "safe-extend"
 Vue.use(VueClipboards);
 export default {
+  created: function () {
+     this.searchIcon.bind(this)()
+  },
   methods: {
+    searchIcon: function () {
+      let search = this.search.trim()
+      if (search === '') {
+        this.filterCategories = this.categories
+      }
+      this.filterCategories = this.categories.map(function(item) {
+        // 复制意外修改到 categories
+        item = extend.clone(item)
+        item.icons = item.icons.filter(function (icon) {
+          return icon.id.indexOf(search) !== -1 || search.indexOf(icon.id) !== -1
+        })
+        if (item.icons.length === 0) {
+          return false
+        }
+        return item
+      }).filter(function (item) {return item})
+    },
     copySuccess: function () {
       message.success('已复制到粘贴板')
     }
   },
   data: function () {
     return {
-      categories: data.categories
+      search: '',
+      categories: data.categories,
+      filterCategories: []
     }
   }
 }
