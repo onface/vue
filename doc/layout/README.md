@@ -1,6 +1,5 @@
 # 布局
 
-## 页面
 
 页面结构布局，主要由 `a-header` `a-sider` `a-content` `a-footer` 组成，它们被 `a-layout` 包裹。
 
@@ -17,7 +16,6 @@
     html: '<div id="layout-simple-demo" ></div>',
     source: './simple.vue',
     run: './simple.demo.js',
-    side: true
 }
 ````
 
@@ -26,7 +24,15 @@
 .a-col {
   background-color:#eee;
 }
-.layout-simple {
+.layout-demo {
   overflow:hidden;
+}
+.demo {
+    background-color: skyblue;
+    color:white;
+    text-align: center;
+}
+.a-col:nth-child(even) .demo {
+  background-color: lightgreen;
 }
 </style>

@@ -44,7 +44,8 @@ export default {
         rootClass: function () {
             return {
                 [`${this.prefixClassName}`]: true,
-                [`${this.prefixClassName}--border`]: this.border
+                [`${this.prefixClassName}--border`]: this.border,
+                [`${this.prefixClassName}--part`]: this.part,
             }
         }
     },
@@ -56,16 +57,19 @@ export default {
         space: {
             type: String,
             default: '0'
+        },
+        part: {
+          type: Boolean
         }
     }
 }
 </script>
 <style lang="less">
 .a-row {
-    &:after {
-      content: ' ';
-      display: block;
-      clear: both;
-    }
-}  
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+}
 </style>
